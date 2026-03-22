@@ -406,12 +406,14 @@ export default function App() {
           </div>
 
           <Card>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form action="https://formsubmit.co/gudlashashank333@gmail.com" method="POST" className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Name</label>
                   <input 
                     type="text" 
+                    name="name"
+                    required
                     placeholder="John Doe"
                     className="w-full px-4 py-3 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
                   />
@@ -420,6 +422,8 @@ export default function App() {
                   <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Email</label>
                   <input 
                     type="email" 
+                    name="email"
+                    required
                     placeholder="john@example.com"
                     className="w-full px-4 py-3 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
                   />
@@ -428,12 +432,14 @@ export default function App() {
               <div className="space-y-2">
                 <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Message</label>
                 <textarea 
+                  name="message"
+                  required
                   rows={4}
                   placeholder="Your message here..."
                   className="w-full px-4 py-3 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all resize-none"
                 />
               </div>
-              <button className="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2">
+              <button type="submit" className="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2">
                 Send Message <Send className="w-4 h-4" />
               </button>
             </form>
