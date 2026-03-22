@@ -209,7 +209,7 @@ export default function App() {
               </div>
               <div className="flex flex-col">
                 <span className="text-sm text-zinc-500 uppercase tracking-wider font-semibold">Current CGPA</span>
-                <span className="font-medium">6.84</span>
+                <span className="font-medium">7.10</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-sm text-zinc-500 uppercase tracking-wider font-semibold">Location</span>
