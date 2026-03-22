@@ -216,6 +216,16 @@ export default function App() {
                 <span className="font-medium">India</span>
               </div>
             </div>
+            <div className="pt-4">
+              <a 
+                href="https://drive.google.com/file/d/1dwDUZj5Mr_5eS4xoJtlqg9CEOny5TYNh/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-xl font-bold transition-all"
+              >
+                <Download className="w-4 h-4" /> CV
+              </a>
+            </div>
           </div>
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-tr from-emerald-500/20 to-teal-500/20 blur-2xl rounded-full" />
