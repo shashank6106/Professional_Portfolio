@@ -275,6 +275,31 @@ export default function App() {
           </div>
         </section>
 
+        {/* Training Section */}
+        <section id="training">
+          <SectionHeading icon={<Award />}>Training</SectionHeading>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="border-l-4 border-l-emerald-500 flex flex-col h-full">
+              <div className="flex-1 space-y-4">
+                <h3 className="text-xl font-bold leading-tight">Professional Training Program</h3>
+                <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+                  Completed comprehensive professional training and earned the respective certification.
+                </p>
+              </div>
+              <div className="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
+                <a 
+                  href="https://drive.google.com/file/d/1JJEtVnG3w9DyOTvMEGO2ZGYFM6RLa4MY/view"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-bold flex items-center gap-2 hover:text-emerald-500 transition-colors"
+                >
+                  View Certificate <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </Card>
+          </div>
+        </section>
+
         {/* Projects Section */}
         <section id="projects">
           <SectionHeading icon={<Layout />}>Featured Projects</SectionHeading>
