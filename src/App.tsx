@@ -40,19 +40,19 @@ const projects: Project[] = [
     title: "Air Quality Analysis Using Exploratory Data Techniques",
     description: "Performed exploratory data analysis on real-world air pollution datasets to analyze pollution trends and regional air quality patterns.",
     tech: ["Python", "NumPy", "Pandas", "Matplotlib", "Seaborn"],
-    link: "https://github.com/shashank6106"
+    link: "https://github.com/shashank6106/Air-Quality-analysis"
   },
   {
     title: "CPU Scheduling Simulator – OS Scheduling Visualizer",
     description: "Interactive web simulator demonstrating CPU scheduling algorithms like FCFS, SJF, Round Robin, and Priority Scheduling with Gantt chart visualization.",
     tech: ["HTML", "CSS", "Tailwind CSS", "JavaScript"],
-    link: "https://github.com/shashank6106"
+    link: "https://github.com/shashank6106/CPU-Scheduling-Simulator1"
   },
   {
     title: "TherapyNest – Mental Health Support Chatbot",
     description: "A mental health support platform with an AI chatbot providing wellness guidance and real-time conversational support.",
     tech: ["HTML", "CSS", "JavaScript"],
-    link: "https://github.com/shashank6106"
+    link: "https://github.com/Mohammed2939/KIKO-ChatBot"
   }
 ];
 
@@ -79,10 +79,15 @@ const skillCategories: SkillCategory[] = [
   }
 ];
 
-const certifications = [
-  "NPTEL Certification in Cloud Computing",
-  "Web Designing Certification from FreeCodeCamp",
-  "Web-ka-Hackathon Certificate from BlockseBlocks"
+interface Certification {
+  title: string;
+  link?: string;
+}
+
+const certifications: Certification[] = [
+  { title: "NPTEL Certification in Cloud Computing", link: "https://drive.google.com/file/d/1O-1eHZwbRbJ8_1xdZSa5sdSz106tw4lF/view" },
+  { title: "Web Designing Certification from FreeCodeCamp", link: "https://drive.google.com/file/d/1JoT6MPdHHIPF4X0sDj1v0iOSlyahmMD9/view" },
+  { title: "Web-ka-Hackathon Certificate from BlockseBlocks", link: "https://drive.google.com/file/d/1ARLwK-F6iGeN__4p7jhbPN6LERauXiqN/view" }
 ];
 
 // --- Components ---
@@ -336,7 +341,13 @@ export default function App() {
                   <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
                     <FileCheck className="w-5 h-5" />
                   </div>
-                  <span className="font-medium text-sm">{cert}</span>
+                  {cert.link ? (
+                    <a href={cert.link} target="_blank" rel="noopener noreferrer" className="font-medium text-sm hover:text-emerald-500 transition-colors flex items-center gap-2">
+                       {cert.title} <ExternalLink className="w-4 h-4" />
+                    </a>
+                  ) : (
+                    <span className="font-medium text-sm">{cert.title}</span>
+                  )}
                 </div>
               ))}
             </div>
