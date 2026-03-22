@@ -281,10 +281,22 @@ export default function App() {
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="border-l-4 border-l-emerald-500 flex flex-col h-full">
               <div className="flex-1 space-y-4">
-                <h3 className="text-xl font-bold leading-tight">Professional Training Program</h3>
-                <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
-                  Completed comprehensive professional training and earned the respective certification.
-                </p>
+                <div>
+                  <h3 className="text-xl font-bold leading-tight">C++ Programming: OOPS and DSA</h3>
+                  <p className="text-sm text-emerald-500 font-medium mt-1">CSE PATSHALA | June 2025 – July 2025</p>
+                </div>
+                <ul className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2 list-disc list-outside ml-4">
+                  <li>Completed an intensive training program covering C++ fundamentals, OOP concepts, and data structures & algorithms.</li>
+                  <li>Worked on implementing classes, inheritance, polymorphism, and dynamic memory using C++.</li>
+                  <li>Made a project based on contact management system using C++, OOPS and DSA.</li>
+                </ul>
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {["C++", "OOP", "Data Structures", "Algorithms", "Problem-Solving", "Memory Management"].map((skill, idx) => (
+                    <span key={idx} className="text-[10px] uppercase tracking-widest font-bold text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
               <div className="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
                 <a 
