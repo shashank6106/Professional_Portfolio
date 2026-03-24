@@ -15,6 +15,7 @@ import {
   FileCheck, 
   Moon, 
   Sun,
+  Monitor,
   ChevronRight,
   Send
 } from 'lucide-react';
@@ -137,17 +138,37 @@ const Card = ({ children, className = "", ...props }: { children: React.ReactNod
 );
 
 export default function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  type Theme = 'light' | 'dark' | 'system';
+  const [theme, setTheme] = useState<Theme>('system');
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
+    const root = window.document.documentElement;
+    const applyTheme = (t: 'light' | 'dark') => {
+      root.classList.remove('light', 'dark');
+      root.classList.add(t);
+    };
 
-  const toggleTheme = () => setIsDarkMode(!isDarkMode);
+    if (theme === 'system') {
+      const initialTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      applyTheme(initialTheme);
+    } else {
+      applyTheme(theme);
+    }
+  }, [theme]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (theme === 'system') {
+        const root = window.document.documentElement;
+        root.classList.remove('light', 'dark');
+        root.classList.add(e.matches ? 'dark' : 'light');
+      }
+    };
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, [theme]);
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-zinc-100 transition-colors duration-300 font-sans">
@@ -164,13 +185,37 @@ export default function App() {
               <a href="#projects" className="hover:text-emerald-500 transition-colors">Projects</a>
               <a href="#contact" className="hover:text-emerald-500 transition-colors">Contact</a>
             </div>
-            <button 
-              onClick={toggleTheme}
-              className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-              aria-label="Toggle theme"
-            >
-              {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
+            <div className="relative">
+              <button 
+                onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
+                className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors flex items-center gap-2"
+                aria-label="Toggle theme"
+              >
+                {theme === 'light' ? <Sun className="w-5 h-5" /> : theme === 'dark' ? <Moon className="w-5 h-5" /> : <Monitor className="w-5 h-5" />}
+              </button>
+              
+              <AnimatePresence>
+                {isThemeMenuOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 mt-2 w-36 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-xl overflow-hidden flex flex-col z-50 py-2"
+                  >
+                    <button onClick={() => { setTheme('light'); setIsThemeMenuOpen(false); }} className={`flex items-center gap-3 px-4 py-2.5 text-sm w-full text-left hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors ${theme === 'light' ? 'text-emerald-500 font-bold' : 'text-zinc-600 dark:text-zinc-400 font-medium'}`}>
+                      <Sun className="w-4 h-4" /> Light
+                    </button>
+                    <button onClick={() => { setTheme('dark'); setIsThemeMenuOpen(false); }} className={`flex items-center gap-3 px-4 py-2.5 text-sm w-full text-left hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors ${theme === 'dark' ? 'text-emerald-500 font-bold' : 'text-zinc-600 dark:text-zinc-400 font-medium'}`}>
+                      <Moon className="w-4 h-4" /> Dark
+                    </button>
+                    <button onClick={() => { setTheme('system'); setIsThemeMenuOpen(false); }} className={`flex items-center gap-3 px-4 py-2.5 text-sm w-full text-left hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors ${theme === 'system' ? 'text-emerald-500 font-bold' : 'text-zinc-600 dark:text-zinc-400 font-medium'}`}>
+                      <Monitor className="w-4 h-4" /> System
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </nav>
