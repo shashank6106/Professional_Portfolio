@@ -179,10 +179,12 @@ export default function App() {
             SG.
           </span>
           <div className="flex items-center gap-6">
-            <div className="hidden md:flex gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-400">
+            <div className="hidden md:flex gap-4 lg:gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-400">
               <a href="#about" className="hover:text-emerald-500 transition-colors">About</a>
               <a href="#skills" className="hover:text-emerald-500 transition-colors">Skills</a>
+              <a href="#training" className="hover:text-emerald-500 transition-colors">Training</a>
               <a href="#projects" className="hover:text-emerald-500 transition-colors">Projects</a>
+              <a href="#achievements" className="hover:text-emerald-500 transition-colors">Achievements</a>
               <a href="#contact" className="hover:text-emerald-500 transition-colors">Contact</a>
             </div>
             <div className="relative">
@@ -453,7 +455,7 @@ export default function App() {
         </section>
 
         {/* Achievements & Certifications */}
-        <section className="grid md:grid-cols-2 gap-12">
+        <section id="achievements" className="grid md:grid-cols-2 gap-12">
           <div>
             <SectionHeading icon={<Award />}>Achievements</SectionHeading>
             <Card className="border-l-4 border-l-emerald-500">
