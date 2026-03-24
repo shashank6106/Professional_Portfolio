@@ -19,6 +19,12 @@ import {
   Send
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { 
+  SiPython, SiCplusplus, SiNumpy, SiPandas, SiScikitlearn, 
+  SiHtml5, SiCss, SiJupyter, SiGithub 
+} from 'react-icons/si';
+import { TbBrandVscode } from 'react-icons/tb';
+import { BsGraphUp } from 'react-icons/bs';
 
 // --- Types ---
 interface Project {
@@ -28,9 +34,14 @@ interface Project {
   link: string;
 }
 
+interface SkillItem {
+  name: string;
+  icon: React.ReactNode;
+}
+
 interface SkillCategory {
   title: string;
-  skills: string[];
+  skills: SkillItem[];
   icon: React.ReactNode;
 }
 
@@ -59,22 +70,38 @@ const projects: Project[] = [
 const skillCategories: SkillCategory[] = [
   {
     title: "Languages",
-    skills: ["Python", "C++"],
+    skills: [
+      { name: "Python", icon: <SiPython className="w-8 h-8" /> },
+      { name: "C++", icon: <SiCplusplus className="w-8 h-8" /> }
+    ],
     icon: <Code2 className="w-5 h-5" />
   },
   {
     title: "Libraries",
-    skills: ["NumPy", "Pandas", "Matplotlib", "Seaborn", "Scikit-learn"],
+    skills: [
+      { name: "NumPy", icon: <SiNumpy className="w-8 h-8" /> },
+      { name: "Pandas", icon: <SiPandas className="w-8 h-8" /> },
+      { name: "Matplotlib", icon: <BsGraphUp className="w-8 h-8" /> },
+      { name: "Seaborn", icon: <BsGraphUp className="w-8 h-8" /> },
+      { name: "Scikit-learn", icon: <SiScikitlearn className="w-8 h-8" /> }
+    ],
     icon: <Database className="w-5 h-5" />
   },
   {
     title: "Web Technologies",
-    skills: ["HTML", "CSS"],
+    skills: [
+      { name: "HTML", icon: <SiHtml5 className="w-8 h-8" /> },
+      { name: "CSS", icon: <SiCss className="w-8 h-8" /> }
+    ],
     icon: <Layout className="w-5 h-5" />
   },
   {
     title: "Tools",
-    skills: ["VS Code", "Jupyter Notebook", "GitHub"],
+    skills: [
+      { name: "VS Code", icon: <TbBrandVscode className="w-8 h-8" /> },
+      { name: "Jupyter Notebook", icon: <SiJupyter className="w-8 h-8" /> },
+      { name: "GitHub", icon: <SiGithub className="w-8 h-8" /> }
+    ],
     icon: <Terminal className="w-5 h-5" />
   }
 ];
@@ -242,33 +269,46 @@ export default function App() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills">
-          <SectionHeading icon={<Code2 />}>Technical Skills</SectionHeading>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <section id="skills" className="py-20">
+          <div className="text-center mb-16">
+            <h4 className="text-emerald-500 font-bold uppercase tracking-[0.2em] text-sm">My Arsenal</h4>
+            <h2 className="text-4xl md:text-5xl font-bold mt-3">Technical Skills</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {skillCategories.map((category, idx) => (
-              <Card key={idx} className="space-y-4">
-                <div className="flex items-center gap-3 text-emerald-500">
-                  {category.icon}
-                  <h3 className="font-bold">{category.title}</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
+              <div 
+                key={idx} 
+                className="bg-zinc-100/50 dark:bg-zinc-900/40 backdrop-blur-sm border border-zinc-200 dark:border-white/10 rounded-[2.5rem] p-10 shadow-sm transition-colors"
+              >
+                <h3 className="text-2xl font-bold mb-6 pb-4 border-b border-zinc-200 dark:border-white/10 flex items-center gap-3">
+                  <span className="text-emerald-500">{category.icon}</span>
+                  {category.title}
+                </h3>
+                
+                <div className="grid grid-cols-3 sm:grid-cols-4 gap-y-8 gap-x-4">
                   {category.skills.map((skill, sIdx) => (
-                    <span key={sIdx} className="px-3 py-1 bg-zinc-100 dark:bg-zinc-800 rounded-md text-sm font-medium">
-                      {skill}
-                    </span>
+                    <div key={sIdx} className="flex flex-col items-center group">
+                      <div className="bg-white dark:bg-black/40 p-5 rounded-2xl mb-3 shadow-sm border border-zinc-100 dark:border-transparent transition-all group-hover:-translate-y-2 duration-300 flex items-center justify-center text-zinc-600 dark:text-zinc-300 group-hover:text-emerald-500 group-hover:shadow-emerald-500/10">
+                        {skill.icon}
+                      </div>
+                      <span className="text-zinc-500 dark:text-slate-400 text-sm font-medium text-center transition-colors group-hover:text-zinc-900 dark:group-hover:text-zinc-100">
+                        {skill.name}
+                      </span>
+                    </div>
                   ))}
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
           
-          <div className="mt-12">
-            <h3 className="text-xl font-bold mb-6">Soft Skills</h3>
+          <div className="mt-16 bg-zinc-100/50 dark:bg-zinc-900/40 backdrop-blur-sm border border-zinc-200 dark:border-white/10 rounded-[2.5rem] p-10 shadow-sm transition-colors">
+            <h3 className="text-2xl font-bold mb-6 pb-4 border-b border-zinc-200 dark:border-white/10">Soft Skills</h3>
             <div className="flex flex-wrap gap-4">
               {["Analytical Thinking", "Team Collaboration", "Strong Work Ethic"].map((skill, idx) => (
-                <div key={idx} className="px-6 py-3 border border-zinc-200 dark:border-zinc-800 rounded-xl flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="font-medium">{skill}</span>
+                <div key={idx} className="px-6 py-3 bg-white dark:bg-black/40 border border-zinc-100 dark:border-transparent rounded-xl flex items-center gap-3 shadow-sm">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                  <span className="font-medium text-sm text-zinc-700 dark:text-zinc-300">{skill}</span>
                 </div>
               ))}
             </div>
