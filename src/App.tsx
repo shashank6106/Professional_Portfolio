@@ -301,15 +301,27 @@ export default function App() {
               </a>
             </div>
           </div>
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-tr from-emerald-500/20 to-teal-500/20 blur-2xl rounded-full" />
-            <Card className="relative aspect-square flex items-center justify-center overflow-hidden">
-               <div className="text-center space-y-4">
-                  <div className="w-24 h-24 bg-emerald-500/10 rounded-2xl flex items-center justify-center mx-auto text-emerald-500">
-                    <GraduationCap className="w-12 h-12" />
+          <div className="relative h-full">
+            <div className="absolute -inset-4 bg-gradient-to-tr from-emerald-500/20 to-teal-500/20 blur-2xl rounded-3xl" />
+            <Card className="relative h-full flex flex-col items-center justify-start overflow-hidden p-0 min-h-[400px]">
+               {/* 
+                 Note: You can replace this src with your local image if you save it in the public folder.
+                 e.g. src="/your-image-name.jpg"
+               */}
+               <div className="w-full h-1/2 min-h-[200px] relative bg-zinc-100 dark:bg-zinc-800">
+                 <img 
+                   src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Lovely_Professional_University.jpg" 
+                   alt="Lovely Professional University Campus" 
+                   className="w-full h-full object-cover" 
+                 />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+               </div>
+               <div className="text-center space-y-4 p-8 flex flex-col items-center justify-center h-1/2 w-full">
+                  <div className="w-16 h-16 bg-white dark:bg-zinc-900 rounded-2xl flex items-center justify-center mx-auto text-emerald-500 -mt-16 relative z-10 shadow-xl border border-zinc-100 dark:border-zinc-800">
+                    <GraduationCap className="w-8 h-8" />
                   </div>
-                  <h3 className="text-xl font-bold">Lovely Professional University</h3>
-                  <p className="text-zinc-500">B.Tech in Computer Science Engineering</p>
+                  <h3 className="text-xl font-bold mt-2">Lovely Professional University</h3>
+                  <p className="text-zinc-500 font-medium pb-4">B.Tech in Computer Science Engineering</p>
                </div>
             </Card>
           </div>
